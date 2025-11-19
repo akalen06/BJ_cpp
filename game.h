@@ -7,9 +7,9 @@
 
 class Game {
 private:
-    Deck deck;
-    HumanPlayer player;
-    Dealer dealer;
+    Deck deck;          //composition: Game is composed of a deck
+    HumanPlayer player; //composition: game is composed of a humanplayer
+    Dealer dealer;      //composition: game is composed of a dealer
 public:
     Game();
     void play();

@@ -5,13 +5,17 @@
 
 class Player {
 protected:
-    std::vector<Card> hand;
+    std::vector<Card> hand; //Encapsulation: hand only modifiable by player via class methods, restricts direct acces to hand from outside the class
 public:
     Player();
     virtual ~Player();
     void addCard(const Card& c);
-    int handValue() const;
-    virtual void makeMove() = 0; // Abstract: afgeleiden MOETEN dit implementeren
+    int handValue() const;       //abstraction: caller doesn't need to know internal hand structure
+
+    virtual void makeMove() = 0; //Polymorphism: enables dynamic dispatch for all player types
+                                 //Base Class: defines inerface for all types of players
+                                // abstract base class: enforces interface, cannot instantiate player
+                                //virtual function: enables sublcasses to provide custom implementations
 };
 
 #endif
