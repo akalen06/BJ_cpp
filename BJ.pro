@@ -11,6 +11,7 @@ SOURCES += \
         dealer.cpp \
         deck.cpp \
         game.cpp \
+        human_player.cpp \
         main.cpp \
         player.cpp
 
@@ -24,4 +25,5 @@ HEADERS += \
     dealer.h \
     deck.h \
     game.h \
+    human_player.h \
     player.h

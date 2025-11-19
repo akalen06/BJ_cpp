@@ -1,10 +1,11 @@
 ﻿#ifndef DEALER_H
 #define DEALER_H
+#include "player.h"
 
-class dealer
-{
+class Dealer : public Player {
 public:
-    dealer();
+    Dealer();
+    void makeMove() override;
 };
 
-#endif // DEALER_H
+#endif
