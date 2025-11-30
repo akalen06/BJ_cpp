@@ -10,6 +10,7 @@ public:
     Player();
     virtual ~Player();
     void addCard(const Card& c);
+    void showHand() const;
     int handValue() const;       //abstraction: caller doesn't need to know internal hand structure
 
     virtual void makeMove() = 0; //Polymorphism: enables dynamic dispatch for all player types
