@@ -4,14 +4,17 @@
 Game::Game() : deck(), player(), dealer() {}
 
 void Game::play() {
+    player.clearHand();
+    dealer.clearHand();
+
     player.addCard(deck.dealCard());
     dealer.addCard(deck.dealCard());
     player.addCard(deck.dealCard());
     dealer.addCard(deck.dealCard());
 
-    std::cout <<"Dealer shows: ";
+    std::cout << "Dealer shows: ";
     dealer.showFirstCard();
-    std::cout <<"\n";
+    std::cout << "\n";
 
     bool playerDone = false;
     while (!playerDone) {
@@ -22,33 +25,40 @@ void Game::play() {
 
         if (choice == 'h') {
             player.addCard(deck.dealCard());
-            if (player.handValue() >= 21) {   // was > 21
-                if (player.handValue() > 21) {
+            int total = player.handValue();
+            if (total >= 21) {
+                if (total > 21) {
                     std::cout << "You've busted\n";
+                } else { // total == 21
+                    std::cout << "You have 21!\n";
                 }
-                playerDone = true;            // bij 21 of bust stoppen
+                playerDone = true;    // stopt direct bij 21 of bust
             }
-        } else {
+        }
+             else {
             playerDone = true;
         }
     }
 
-    if (player.handValue() <= 21){
-        while (dealer.handValue() < 17){
+    if (player.handValue() <= 21) {
+        while (dealer.handValue() < 17) {
             dealer.addCard(deck.dealCard());
         }
     }
-    std::cout << "Player: " << player.handValue() << "\n";
-    std::cout << "Dealer: " << dealer.handValue() << "\n";
 
-    if (player.handValue() > 21) {
+    int playerTotal = player.handValue();
+    int dealerTotal = dealer.handValue();
+
+    player.showHandWithValue("Player");
+    dealer.showHandWithValue("Dealer");
+
+    if (playerTotal > 21) {
         std::cout << "Dealer wins.\n";
-    } else if (dealer.handValue() > 21 || player.handValue() > dealer.handValue()) {
+    } else if (dealerTotal > 21 || playerTotal > dealerTotal) {
         std::cout << "Player wins.\n";
-    } else if (player.handValue() < dealer.handValue()) {
+    } else if (playerTotal < dealerTotal) {
         std::cout << "Dealer wins.\n";
     } else {
         std::cout << "Push.\n";
     }
-
 }

@@ -23,3 +23,13 @@ int Player::handValue() const {
     }
     return sum;
 }
+
+void Player::showHandWithValue(const std::string& name) const {
+    std::cout << name << " ";
+    showHand();
+    std::cout << name << " value: " << handValue() << "\n";
+}
+
+void Player::clearHand() {
+    hand.clear();
+}
