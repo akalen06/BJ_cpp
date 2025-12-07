@@ -6,6 +6,7 @@ class Dealer : public Player {
 public:
     Dealer();
     void makeMove() override;
+    void showFirstCard() const;
 };
 
 #endif

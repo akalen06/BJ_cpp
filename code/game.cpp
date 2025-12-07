@@ -9,23 +9,30 @@ void Game::play() {
     player.addCard(deck.dealCard());
     dealer.addCard(deck.dealCard());
 
+    std::cout <<"Dealer shows: ";
+    dealer.showFirstCard();
+    std::cout <<"\n";
+
     bool playerDone = false;
-    while(!playerDone) {
+    while (!playerDone) {
         player.showHand();
-        std::cout << "Will you hit or stand? (h/s); ";
+        std::cout << "Will you hit or stand? (h/s): ";
         char choice;
         std::cin >> choice;
 
         if (choice == 'h') {
             player.addCard(deck.dealCard());
-            if (player.handValue() > 21) {
-                std::cout << "You've busted\n";
-                playerDone = true;
+            if (player.handValue() >= 21) {   // was > 21
+                if (player.handValue() > 21) {
+                    std::cout << "You've busted\n";
+                }
+                playerDone = true;            // bij 21 of bust stoppen
             }
-        }   else {
+        } else {
             playerDone = true;
         }
     }
+
     if (player.handValue() <= 21){
         while (dealer.handValue() < 17){
             dealer.addCard(deck.dealCard());
