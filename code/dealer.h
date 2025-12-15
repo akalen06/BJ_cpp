@@ -7,6 +7,6 @@ public:
     Dealer();
     void makeMove() override;
     void showFirstCard() const;
+    std::string getName() const { return "Dealer"; }
 };
-
 #endif

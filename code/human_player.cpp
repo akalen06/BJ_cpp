@@ -1,8 +1,13 @@
 ﻿#include "human_player.h"
 #include <iostream>
 
-HumanPlayer::HumanPlayer() : Player() {}
+HumanPlayer::HumanPlayer(const std::string& playerName)
+    : Player(), name(playerName) {}
 
 void HumanPlayer::makeMove() {
-    std::cout << "Jij mag een zet doen (dummy, implementatie volgt in Game)." << std::endl;
+    std::cout << name << ", jouw beurt!" << std::endl;
+}
+
+std::string HumanPlayer::getName() const {
+    return name;
 }

@@ -8,6 +8,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         card.cpp \
+        cpu_player.cpp \
         dealer.cpp \
         deck.cpp \
         game.cpp \
@@ -22,6 +23,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     card.h \
+    cpu_player.h \
     dealer.h \
     deck.h \
     game.h \
