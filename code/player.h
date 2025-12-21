@@ -7,9 +7,16 @@
 class Player {
 protected:
     std::vector<Card> hand; //Encapsulation: hand only modifiable by player via class methods, restricts direct acces to hand from outside the class
+    int balance;
+    int currentBet;
+
 public:
     Player();
     virtual ~Player();
+    void setBalance(int b) {balance = b;}
+    int getBalance() const { return balance; }
+    void setBet(int b) { currentBet = b; }
+    int getBet() const { return currentBet; }
     void addCard(const Card& c);
     void showHand() const;
     int handValue() const;       //abstraction: caller doesn't need to know internal hand structure

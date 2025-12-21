@@ -14,6 +14,7 @@ private:
     std::vector<Player*> players;  // Alle spelers (human + cpu)
     Dealer dealer;
 
+
     void dealInitialCards();
     void playerTurn(Player* player, bool isCPU = false);
     void dealerTurn();

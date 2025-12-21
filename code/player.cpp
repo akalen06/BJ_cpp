@@ -1,7 +1,7 @@
 ﻿#include "player.h"
 #include "iostream"
 
-Player::Player() {}
+Player::Player() : balance(100), currentBet(0) {}
 Player::~Player() {}
 
 void Player::addCard(const Card& c) {

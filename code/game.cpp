@@ -113,31 +113,65 @@ void Game::determineWinners() {
         std::string playerName = human ? human->getName() : cpu->getName();
 
         int playerTotal = p->handValue();
+        int bet = p->getBet();
         p->showHandWithValue(playerName);
 
         if (playerTotal > 21) {
             std::cout << playerName << " loses (busted).\n";
+            p->setBalance(p->getBalance() - bet);
         } else if (dealerTotal > 21) {
             std::cout << playerName << " wins (dealer busted)!\n";
+            p->setBalance(p->getBalance() + bet);
         } else if (playerTotal > dealerTotal) {
             std::cout << playerName << " wins!\n";
+            p->setBalance(p->getBalance() + bet);
         } else if (playerTotal < dealerTotal) {
             std::cout << playerName << " loses.\n";
+            p->setBalance(p->getBalance() - bet);
         } else {
             std::cout << playerName << " pushes.\n";
+            // balance onveranderd
         }
-        std::cout << "\n";
+
+        std::cout << playerName
+                  << " new balance: " << p->getBalance() << "\n\n";
     }
+
+    std::cout << "\n";
 }
+
 
 void Game::play() {
     // Clear alle handen
     for (Player* p : players) {
         p->clearHand();
+        p->setBet(0);
     }
     dealer.clearHand();
 
-    // Deal initial cards
+    // Inzetfase
+    std::cout << "=== BETTING PHASE ===\n";
+    for (Player* p : players) {
+        HumanPlayer* human = dynamic_cast<HumanPlayer*>(p);
+        CPUPlayer* cpu = dynamic_cast<CPUPlayer*>(p);
+
+        if (human) {
+            int bet;
+            std::cout << human->getName()
+                      << " balance: " << human->getBalance()
+                      << " | Enter bet: ";
+            std::cin >> bet;
+            if (bet < 1) bet = 1;
+            if (bet > human->getBalance()) bet = human->getBalance();
+            human->setBet(bet);
+        } else if (cpu) {
+            int bet = std::min(10, cpu->getBalance()); // simpele CPU-bet
+            cpu->setBet(bet);
+            std::cout << cpu->getName()
+                      << " bets " << bet
+                      << " (balance: " << cpu->getBalance() << ")\n";
+        }
+    }// Deal initial cards
     dealInitialCards();
 
     // Elke speler speelt
