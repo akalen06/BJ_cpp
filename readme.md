@@ -1,6 +1,6 @@
 # C++ OOP Blackjack
 
-Dit is mijn C++ Object Oriented Programming (OOP) Blackjack project, gespeeld in de console. Het spel ondersteunt meerdere menselijke spelers en CPU-spelers, met een eenvoudige inzet/credits-logica per ronde. [web:8][file:3]
+Dit is mijn C++ Object Oriented Programming (OOP) Blackjack project, gespeeld in de console. Het spel ondersteunt meerdere menselijke spelers en CPU-spelers, met een eenvoudige inzet/credits-logica per ronde.
 
 ## Build & Run
 
